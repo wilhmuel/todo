@@ -9,10 +9,12 @@
     </div>
 
     <!-- Get Tasks -->
+    <!--
     <div class="d-flex mt-5">
       <button @click="getTasks" class="btn btn-warning rounded-5">Get Tasks</button>
     </div>
-
+    -->
+    
     <!-- Task Table -->
     <table class="table table-bordered mt-2">
   <thead>
