@@ -14,7 +14,7 @@
       <button @click="getTasks" class="btn btn-warning rounded-5">Get Tasks</button>
     </div>
     -->
-    
+
     <!-- Task Table -->
     <table class="table table-bordered mt-2">
   <thead>
@@ -72,7 +72,7 @@ export default {
       tasks: [
         {
           _id: '',
-          name: 'Click "Get Tasks',
+          name: 'Refresh',
           status: ''
         }
       ]

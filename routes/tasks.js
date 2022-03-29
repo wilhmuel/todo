@@ -56,7 +56,7 @@ router.patch('/:postId', (req, res) => {
 
 //DELETE A TASK
 router.delete('/:postId', (req, res) => {
-    const removedTask = Task.remove({ _id: req.params.postId });
+    const removedTask = Task.deleteOne({ _id: req.params.postId });
     removedTask.then(data => {
         res.json(data);
     })
