@@ -81,7 +81,7 @@ export default {
 
   methods: {
     getTasks(){
-      this.axios.get("http://localhost:3000/tasks").then((response) => {
+      this.axios.get(process.env.VUE_APP_DB_URI + '/' + 'tasks').then((response) => {
         this.tasks = response.data;
         //console.log(response.data);
       })
@@ -94,7 +94,7 @@ export default {
         return;
       }
       if (this.editedTask === null){
-      this.axios.post("http://localhost:3000/tasks", {
+      this.axios.post(process.env.VUE_APP_DB_URI + '/' + 'tasks', {
         name: this.task,
         status: 'to-do'
       })
@@ -107,7 +107,7 @@ export default {
       });
       }else{
         let postID = this.tasks[this.editedTask]._id;
-        this.axios.patch("http://localhost:3000/tasks" + '/' + postID, {
+        this.axios.patch(process.env.VUE_APP_DB_URI + '/' + 'tasks' + '/' + postID, {
           name: this.task
         })
         .then((response) => {
@@ -124,7 +124,7 @@ export default {
 
     deleteTask(index){
       let postID = this.tasks[index]._id;
-      this.axios.delete("http://localhost:3000/tasks" + '/' + postID)
+      this.axios.delete(process.env.VUE_APP_DB_URI + '/' + 'tasks' + '/' + postID)
       .then((response) => {
       console.log(response.data);
       this.getTasks();
@@ -144,7 +144,7 @@ export default {
       let newIndex = this.availableStatuses.indexOf(this.tasks[index].status);
       if (++newIndex > 2) newIndex = 0;
       let postID = this.tasks[index]._id;
-      this.axios.patch("http://localhost:3000/tasks" + '/' + postID, {
+      this.axios.patch(process.env.VUE_APP_DB_URI + '/' + 'tasks' + '/' + postID, {
         status: this.availableStatuses[newIndex]
       })
       .then((response) => {

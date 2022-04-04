@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(3000);
+app.listen(process.env.API_PORT);
 
 //DB Connect
 mongoose.connect(process.env.DB_CONNECTION, () =>
