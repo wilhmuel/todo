@@ -1,3 +1,4 @@
+version: '3.9'
 services:
   #mongodb service
   mongo_db:
@@ -6,19 +7,25 @@ services:
     restart: always
     volumes:
     - mongo_db:/data/db
-  
-  #api+frontend service
+  #api
   api:
-    build: .
+    build: ./backend
     ports:
-      - 8080:8080
       - 3000:3000
     environment:
-      PORT: 3000
-      MONGODB_URI: mongodb://mongo_db:27017
-      DB_NAME: my_db
+      API_PORT: 3000
+      DB_CONNECTION: mongodb://mongo_db:27017
     depends_on:
       - mongo_db
+  #frontend
+  vue:
+    build: ./frontend
+    ports:
+      - 8080:8080
+    environment:
+      VUE_APP_DB_URI: http://api:3000
+    depends_on:
+      - api
 
 volumes:
   mongo_db: {}
